@@ -1,0 +1,27 @@
+## Select your choice of blas or lapack here:
+sudo update-alternatives --config libblas.so.3-x86_64-linux-gnu
+sudo update-alternatives --config liblapack.so.3-x86_64-linux-gnu
+
+
+## BLIS (blas)
+update-alternatives --install /usr/lib/x86_64-linux-gnu/libblas.so   libblas.so-x86_64-linux-gnu /usr/lib/x86_64-linux-gnu/blis/lib/libblis.so.2 50
+update-alternatives --install /usr/lib/x86_64-linux-gnu/libblas.so.3 libblas.so.3-x86_64-linux-gnu  /usr/lib/x86_64-linux-gnu/blis/lib/libblis.so.2 50
+## LIBFLAME (lapack)
+update-alternatives --install /usr/lib/x86_64-linux-gnu/liblapack.so   liblapack.so-x86_64-linux-gnu   /home/impartial-spec/flame/lib/libflame.so 50
+update-alternatives --install /usr/lib/x86_64-linux-gnu/liblapack.so.3 liblapack.so.3-x86_64-linux-gnu /home/impartial-spec/flame/lib/libflame.so 50
+
+
+## OpenBLAS updates to new builds. 
+update-alternatives --install /usr/lib/x86_64-linux-gnu/libblas.so     libblas.so-x86_64-linux-gnu       /opt/OpenBLAS/lib/libopenblas.so.0 45
+update-alternatives --install /usr/lib/x86_64-linux-gnu/libblas.so.3 libblas.so.3-x86_64-linux-gnu       /opt/OpenBLAS/lib/libopenblas.so.0 45
+
+update-alternatives --install /usr/lib/x86_64-linux-gnu/liblapack.so   liblapack.so-x86_64-linux-gnu    /opt/OpenBLAS/lib/libopenblas.so.0 45
+update-alternatives --install /usr/lib/x86_64-linux-gnu/liblapack.so.3 liblapack.so.3-x86_64-linux-gnu  /opt/OpenBLAS/lib/libopenblas.so.0 45
+
+
+## MKL installs, links, and fails! https://github.com/eddelbuettel/mkl4deb. 
+update-alternatives --install /usr/lib/x86_64-linux-gnu/libblas.so     libblas.so-x86_64-linux-gnu      /opt/intel/mkl/lib/intel64/libmkl_rt.so 50
+update-alternatives --install /usr/lib/x86_64-linux-gnu/libblas.so.3 libblas.so.3-x86_64-linux-gnu     /opt/intel/mkl/lib/intel64/libmkl_rt.so 50
+
+update-alternatives --install /usr/lib/x86_64-linux-gnu/liblapack.so   liblapack.so-x86_64-linux-gnu    /opt/intel/mkl/lib/intel64/libmkl_rt.so 50
+update-alternatives --install /usr/lib/x86_64-linux-gnu/liblapack.so.3 liblapack.so.3-x86_64-linux-gnu /opt/intel/mkl/lib/intel64/libmkl_rt.so 50
