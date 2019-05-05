@@ -1,0 +1,440 @@
+---
+title: Try Blis - A Framework for Rapid BLAS Functionality
+date: 2019-04-27
+author: Justin M. Shea
+institute:  
+titlegraphic: 
+fontsize: 10pt
+output:
+ ioslides_presentation:
+    smaller: true
+    css: ~/R/Try-BLIS/slides/ioslides-css.css    
+ beamer_presentation:
+    template: ~/R/Try-BLIS/slides/latex-beamer.tex
+    keep_tex: true
+# toc: true
+    slide_level: 2
+---
+
+
+# Introduction
+
+
+
+## About me: Justin M. Shea
+
+
+- Visiting Professor of Finance, Roosevelt University
+
+- TA/Co-instructor University of Chicago Master of Science in analytics Program, Capstone Project
+
+- [Google summer of code](https://summerofcode.withgoogle.com/) mentor 2019, R and Finance `PerformanceAnalytics` package.
+
+- Organizer of [The Chicago R User Group](https://www.meetup.com/Chicago-R-User-Group/)
+
+- Committee member [R/Finance 2019](https://www.rinfinance.com/)
+
+- Organizer [SatRday Chicago](https://chicago2019.satrdays.org/)
+
+- Author of the **`wooldridge`** R package, official R package for "Introductory Econometrics" by Jeffrey M. Wooldridge.
+
+- Almost 2 decades in Finance, primarily Futures and Options trading
+
+# Background 
+
+## Data grows, hardware gets cheaper
+
+- A Designer laptop that costs $3,000+ maybe a waste of your most valuable resources, **time & money**. It's slow and expensive.
+
+- Some data is private/valuable and you may not want to (or be allowed to) outsource it to the cloud. Plus, that server time adds up `$$$`.
+
+- You're already building your own Software for Data Analysis (`SoDa`), consider building your own Hardware for Data Analysis (`HoDa`) for similar reasons!
+
+- **Consider BYOH: _Build Your Own HardWare!_**
+
+## High-Performance Hardware Cheap?
+
+- **August 2017**: Advanced Microdevices (`AMD`) x86 Core “Zen” architecture released
+
+- `Ryzen` retail, `Threadripper` High-Performance, and `EPIC` Server product lines.
+
+- Similar Performance as Intel, but at a deep discount. 
+
+- **Bottom Line for Data Peeps:** 
+    - `Twice the core counts for less money`
+    - `Or more CPU for the same money`
+
+[https://www.amd.com/en/technologies/zen-core](https://www.amd.com/en/technologies/zen-core)
+
+## Early adoption looks good
+
+- **Market Response is very positive:** `ZEN` product lines are gaining acceptance among Graphics Designers, Gamers, and Data Professionals
+```{r, warning=FALSE, message=FALSE, echo=FALSE, results='hide'}
+library(quantmod)
+getSymbols("AMD")
+```
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+chartSeries(AMD["2017/2019-04-27"], type="line", up.col="black", dn.col="black",theme = chartTheme("white"), name="Advanced Microdevices (AMD) Shares", TA= 'addEMA(n=200,col="red")')
+```
+
+
+## Taking a chance on AMD
+
+- Bought a **Threadripper 1950X 3.4 GHz 16-Core** Processor  
+
+```{r,  echo = FALSE, message=FALSE}
+library(magick)
+path <- paste0(getwd(), "/images/IMG_0189.JPG")
+image <- image_read(path)
+image <- image_scale(image, "850x850")
+image <- image_rotate(image, -90)
+image
+```
+
+## High-Performance CPUs get hot
+
+Liquid cooling: Enermax Liqtech TR4 II 280 80.71 CFM CPU Cooler  
+
+```{r, echo = FALSE}
+path <- paste0(getwd(), "/images/IMG_0190.JPG")
+image <- image_read(path)
+image <- image_scale(image, "650x650")
+image
+```
+
+## RAM Installed: 64GB
+
+- One _shouldn't_ mix differing RAM. I did because I had extra and its **more RAM**
+- When mixing `RAM`, `F2` into the `bios` on boot and adjust the MHZ accordingly.
+- Mixing **`3000`** and **`3200`** kits, I was able to reach **`2800`** MHZ without overclocking.
+
+```{r, echo = FALSE, out.width = "725px"}
+path <- paste0(getwd(), "/images/IMG_0193.JPG")
+knitr::include_graphics(path)
+```
+
+## It's ALIVE
+
+```{r, echo = FALSE, out.width = "700px"}
+path <- paste0(getwd(), "/images/IMG_0203.PNG")
+knitr::include_graphics(path)
+```
+
+## Complete List of parts
+
+- I recycled parts from a previous build so cost `$1500`. `$2500` from scratch.
+- Time investment pays dividends via future upgrades scale and productivity.
+- Cheaper than the average designer laptop, and more powerful!
+
+Full Parts list available her: https://pcpartpicker.com/list/Xqs9zY
+
+```{r, echo = FALSE, out.width = "750px"}
+path <- paste0(getwd(), "/images/pcPartPicker.PNG")
+knitr::include_graphics(path)
+```
+
+
+# Testing and Benchmarking
+
+## Benchmarking
+
+Using the `bencharkme` package by Colin Gillespie. 
+
+```{r, warnings=FALSE, message=FALSE}
+library(benchmarkme)
+```
+
+- Contains functions which run `matrix algebra` computations on random data.
+
+- Matrix algebra computations are the core of statistical/Machine Learning models.
+
+- Contains `crowd-sourced` benchmarks from other use`R`s for comparison.
+
+
+Benchmarks based heavily on the R script by **Simon Urbanek** & **Doug Bates**:
+
+[http://r.research.att.com/benchmarks/R-benchmark-25.R](http://r.research.att.com/benchmarks/R-benchmark-25.R)
+
+
+
+## Benchmark: General Programming
+
+- 3,500,000 Fibonacci numbers calculation (vector calc).
+
+- Creation of a 3500x3500 Hilbert matrix (matrix calc).
+
+- Grand common divisors of 1,000,000 pairs (recursion).
+
+- Creation of a 1600x1600 Toeplitz matrix (loops).
+
+- Escoufier's method on a 60x60 matrix (mixed)
+
+## Benchmark: Matrix Calculation
+
+- Creation, transpose., deformation of a 2500x2500 matrix.
+
+- 2500x2500 normal distributed random matrix ^1000.
+
+- Sorting of 7,000,000 random values.
+
+- 2500x2500 cross-product matrix (b = a' * a)
+
+- Linear regression over a 3000x3000 matrix.
+
+## Benchmark: Matrix Functions
+
+- FFT over 2,500,000 random values.
+
+- Eigenvalues of a 640x640 random matrix.
+
+- Determinant of a 2500x2500 random matrix.
+
+- Cholesky decomposition of a 3000x3000 matrix.
+
+- Inverse of a 1600x1600 random matrix.
+
+
+## base-R 1 core: General Programming
+
+```{r, warning=FALSE, echo=FALSE}
+library(benchmarkme)
+openblas <- readRDS("~/R/Try-BLIS/data/openblas.rds")
+plot(openblas, blas_optimize =NULL, test_group = "prog")
+```
+
+## base-R 1 core: Matrix Calculation
+```{r, warning=FALSE, echo=FALSE}
+plot(openblas, blas_optimize =NULL, test_group = "matrix_cal")
+```
+
+## base-R 1 core: Matrix Functions
+
+```{r, warning=FALSE, echo=FALSE}
+plot(openblas, blas_optimize =NULL, test_group = "matrix_fun")
+```
+
+## base-R 8 cores: General Programming
+
+```{r, warning=FALSE, echo=FALSE}
+library(benchmarkme)
+openblas_8 <- readRDS("~/R/Try-BLIS/data/openblas_8.rds")
+plot(openblas_8, test_group = "prog")
+```
+
+## base-R 8 cores: Matrix Calculation
+
+```{r, warning=FALSE, echo=FALSE}
+plot(openblas_8, test_group = "matrix_cal")
+```
+
+
+## base-R 8 cores: Matrix Functions
+
+```{r, warning=FALSE, echo=FALSE}
+plot(openblas_8, test_group = "matrix_fun")
+```
+
+## base-R 16 cores: Matrix Functions
+
+```{r, warning=FALSE, echo=FALSE}
+plot(readRDS("~/R/Try-BLIS/data/openblas_16.rds"), test_group = "matrix_fun")
+```
+
+## base-R results summary
+
+-  General Programming Benchmarks are excellent!
+
+- Linear Algebra Calculations are excellent!
+
+- **Linear Algebra Functions lagging severely when run in Parallel!??**
+
+The goal of this entire build was to run models in parallel, so this is no good!
+
+
+## Linear Algebra Functions in R
+
+`base-R` interfaces with `BLAS` (`B`asic `L`inear `A`lgebra `S`ubprograms) routines that provide standard building blocks for performing linear algebra operations. 
+
+- scalar multiplication 
+
+- dot products 
+
+- linear combinations 
+
+- matrix operations
+
+- Written in both `C` and `FORTRAN`
+
+Papers and History here: [http://www.netlib.org/blas/](http://www.netlib.org/blas/)
+
+**`Let's Try another BLAS!`**
+
+
+
+## From BLAS/LAPACK to BLIS/libFLAME
+
+Poking around the internet and researching various BLAS libraries led me to BLIS and the FLAME project!
+
+BLIS/libFlame are high performance dense linear algebra libraries, each addressing a layer in the linear algebra software stack.
+
+Primarily developed and maintained by individuals in the Science of High-Performance Computing (SHPC) group in the Institute for Computational Engineering and Sciences at The University of Texas at Austin.
+
+[https://www.cs.utexas.edu/~flame/web/]( https://www.cs.utexas.edu/~flame/web/)
+
+
+
+
+## BLIS/libFLAME
+
+`BLIS` is a portable software framework for instantiating high-performance BLAS-like dense linear algebra libraries. The framework was designed to isolate essential kernels of computation that, when optimized, enable optimized implementations of most of its commonly used and computationally intensive operations. Build BLIS from source on Github here:
+ [https://github.com/flame/blis](https://github.com/flame/blis)
+
+`libFLAME` is a high performance dense linear algebra library that is the result of the FLAME methodology for systematically developing dense linear algebra libraries. The FLAME methodology is radically different from the LINPACK/LAPACK approach that dates back to the 1970s, but is backwards compatible with them. Build libFLAME from source on Github here:
+ [ https://github.com/flame/libflame/](https://github.com/flame/libflame/)
+ 
+ **The best part is: They really ROCK!**
+
+## BLIS/libFLAME 1 core: Programming
+
+```{r, warning=FALSE, echo=FALSE}
+BLIS <- readRDS("~/R/Try-BLIS/data/BLIS.rds")
+plot(BLIS, test_group = "prog")
+```
+
+## BLIS/libFLAME: Matrix Calculation
+```{r, warning=FALSE, echo=FALSE}
+plot(BLIS, test_group = "matrix_cal")
+```
+
+## BLIS/libFLAME 1 core: Matrix Functions
+
+```{r, warning=FALSE, echo=FALSE}
+plot(BLIS, test_group = "matrix_fun")
+```
+
+## BLIS/libFLAME: Matrix Functions   {.smaller}
+
+```{r, echo=FALSE}
+data(past_results_v2, package = "benchmarkmeData")
+
+cores_fun <- past_results_v2[past_results_v2$cores == 0 & past_results_v2$test_group == "matrix_fun" & 
+past_results_v2$blas_optimize == "FALSE",]
+
+cores_fun$ram <- cores_fun$ram/1000000000
+
+BLIS_fun_elapsed <- sum(BLIS[BLIS$test_group=="matrix_fun","elapsed"])/3
+```
+
+Threadripper with BLIS places $5th$ of 162 with a time of $`r round(BLIS_fun_elapsed,4)`$ seconds.
+
+```{r, echo=FALSE}
+cores_fun <- data.frame(cores_fun[,c("time", "cpu", "ram", "sysname", "release", "cores")])
+my_build <- data.frame("time"=BLIS_fun_elapsed, "cpu"=get_cpu()$model_name, "ram"=NA, "sysname"="Linux", "release"=get_sys_details()$sys_info$release, "cores"=0)
+cores_fun <- rbind(cores_fun, my_build)
+cores_fun <- cores_fun[order(cores_fun$time),]
+
+knitr::kable(data.frame(cores_fun[1:10,]), digits=3, row.names = FALSE)
+```
+
+##  BLIS/libFLAME 8 core: Programming
+
+```{r, warning=FALSE, echo=FALSE}
+BLIS_8 <- readRDS("~/R/Try-BLIS/data/BLIS_8.rds")
+plot(BLIS_8, test_group = "prog")
+```
+
+##  BLIS/libFLAME 8 core: M Calculation
+```{r, warning=FALSE, echo=FALSE}
+plot(BLIS_8, test_group = "matrix_cal")
+```
+
+## BLIS/libFLAME 8 core: M Functions
+```{r, warning=FALSE, echo=FALSE}
+plot(BLIS_8, test_group = "matrix_fun")
+```
+
+##  BLIS/libFLAME 16 cores: M Functions
+```{r, warning=FALSE, echo=FALSE}
+ BLIS_16 <- readRDS("~/R/Try-BLIS/data/BLIS_16.rds")
+plot(BLIS_16, test_group = "matrix_fun")
+```
+
+## BLIS/libFLAME 16 cores: M Functions
+
+```{r, echo=FALSE}
+data(past_results_v2, package = "benchmarkmeData")
+
+cores_fun <- past_results_v2[past_results_v2$cores == 16 & past_results_v2$test_group == "matrix_fun" & 
+past_results_v2$blas_optimize == "FALSE",]
+
+cores_fun$ram <- cores_fun$ram/1000000000
+
+BLIS_fun_elapsed <- sum(BLIS_16[BLIS_16$test_group=="matrix_fun","elapsed"])/3
+```
+
+BLIS/libFLAME places $1st$ of 7 with a time of $`r round(BLIS_fun_elapsed,2)`$ seconds, beats the next submission by a factor of 5, and the last by a factor of 18.
+
+No Intel submissions with this many cores to benchmark against.
+
+```{r, echo=FALSE}
+cores_fun <- data.frame(cores_fun[,c("time", "cpu", "ram", "sysname", "release", "cores")])
+my_build <- data.frame("time"=BLIS_fun_elapsed, "cpu"=get_cpu()$model_name, "ram"=NA, "sysname"="Linux", "release"=get_sys_details()$sys_info$release, "cores"=16)
+cores_fun <- rbind(cores_fun, my_build)
+cores_fun <- cores_fun[order(cores_fun$time),]
+
+knitr::kable(data.frame(cores_fun), digits=3, row.names = FALSE)
+```
+
+
+## Fast Linear Algebra functions achieved!
+
+```{r, echo=FALSE}
+openblas_16 <- readRDS("~/R/Try-BLIS/data/openblas_16.rds")
+BLIS_16 <- readRDS("~/R/Try-BLIS/data/BLIS_16.rds")
+
+blas_fun_elapsed <- sum(openblas[openblas$test_group=="matrix_fun","elapsed"])/3
+BLIS_fun_elapsed <- sum(BLIS[BLIS$test_group=="matrix_fun","elapsed"])/3
+
+blas8_fun_elapsed <- sum(openblas_8[openblas_8$test_group=="matrix_fun","elapsed"])/3
+BLIS8_fun_elapsed <- sum(BLIS_8[BLIS_8$test_group=="matrix_fun","elapsed"])/3
+
+blas16_fun_elapsed <- sum(openblas_16[openblas_16$test_group=="matrix_fun","elapsed"])/3
+BLIS16_fun_elapsed <- sum(BLIS_16[BLIS_16$test_group=="matrix_fun","elapsed"])/3
+ 
+```
+
+On a single core, `base-R` **BLAS** is somewhat faster by `r round(BLIS_fun_elapsed-blas_fun_elapsed, 2)` seconds, a factor of `r round(BLIS_fun_elapsed/blas_fun_elapsed, 2)`.
+
+- BLAS Single `r round(blas_fun_elapsed, 2)` seconds.
+
+- BLIS Single `r round(BLIS_fun_elapsed, 2)` seconds.
+
+But on 8 cores, _**BLIS**_ becomes much faster by `r round(blas8_fun_elapsed - BLIS8_fun_elapsed, 2)` seconds, a factor of `r round(blas8_fun_elapsed/BLIS8_fun_elapsed, 2)`.
+
+- BLAS 8-core `r round(blas8_fun_elapsed, 2)` seconds.
+
+- BLIS 8-core `r round(BLIS8_fun_elapsed, 2)` seconds.
+
+On 16 cores, **BLIS** is even faster yet by `r round(blas16_fun_elapsed - BLIS16_fun_elapsed, 2)` seconds, a factor of `r round(blas16_fun_elapsed/BLIS16_fun_elapsed, 2)`.
+
+- BLAS 16-core `r round(blas16_fun_elapsed, 2)` seconds.
+
+- BLIS 16-core `r round(BLIS16_fun_elapsed, 2)` seconds.
+
+
+## Resources to switch BLAS to BLIS!
+
+- **Dirk Eddelbuettel:** simple scripts to switch BLAS/LAPACK implementations [http://dirk.eddelbuettel.com/blog/2018/04/15/#018_mkl_for_debian_ubuntu](http://dirk.eddelbuettel.com/blog/2018/04/15/#018_mkl_for_debian_ubuntu)
+
+- **Debian/Ubuntu Wiki:** Implementations alternative versions of BLAS and LAPACK [https://wiki.debian.org/DebianScience/LinearAlgebraLibraries](https://wiki.debian.org/DebianScience/LinearAlgebraLibraries)
+
+- **Brett Klamer:** Windows setup [http://brettklamer.com/diversions/statistical/faster-blas-in-r/](http://brettklamer.com/diversions/statistical/faster-blas-in-r/)
+
+- **U Texas** Science of High-Performance Computing Group
+http://shpc.ices.utexas.edu/software.html
+
+ - **BLIS Github**: [https://github.com/flame/blis](https://github.com/flame/blis)
+
+- **libFLAME Github**: [https://github.com/flame/libflame/](https://github.com/flame/libflame/)
+
+# Try BLIS! Thank You
