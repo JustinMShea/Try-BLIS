@@ -11,7 +11,7 @@ Benchmark results show a large performance increase when substituting `BLIS` for
 
 - Presentation html [slides here](https://raw.githack.com/JustinMShea/Try-BLIS/master/slides/Try-BLIS.html#1).
 
-- Presentation was in html, but pdf is available in the [slides folder](https://github.com/JustinMShea/Try-BLIS/blob/master/slides/Try-BLIS.pdf)
+- Presentation was in html, but pdf is available in the [slides folder](https://rawcdn.githack.com/JustinMShea/Try-BLIS/9a6d8d6219305b7715b4941fa07f98e52f5d7cfa/slides/Try-BLIS.html)
 
 - Download this repo and render the .Rmd in the slides folder locally. 
 
