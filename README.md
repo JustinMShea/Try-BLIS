@@ -1,9 +1,5 @@
 # Try BLIS
 
-This repo contains data, images, and files for building the slides from my talk at [Sat`R`day Chicago](https://chicago2019.satrdays.org/) 2019-04-27. 
-
-## Summary
-
 In continued pursuit of high performance local computing, I recently built a desktop powered by the [AMD Ryzen™ Threadripper™ 1950X 16-Core Processor](https://www.amd.com/en/products/cpu/amd-ryzen-threadripper-1950x). For details, I gave a talk on building the machine [earlier this year](https://github.com/JustinMShea/hardware-for-data-science). Using the [benchmarkme package](https://github.com/csgillespie/benchmarkme), I found performance to be excellent on several benchmark categories, except for that of running linear algebra functions in parallel, which were severely lagging. This was very disappointing, considering the entire purpose of the build is to leverage the Threadripper's multiple core architecture to reduce statistical and machine learning modeling time on larger data sets.
 
 Researching various [`BLAS`](https://cran.r-project.org/doc/manuals/r-release/R-admin.html#BLAS) libraries led me to [`BLIS`](https://github.com/flame/blis/) and [`libFLAME`](https://github.com/flame/libflame/) high performance dense linear algebra libraries, each addressing an important layer in the linear algebra software stack. These are part of the [`FLAME` Project]( https://www.cs.utexas.edu/~flame/web/), primarily developed and maintained by individuals in [The Science of High-Performance Computing (SHPC) Group](http://shpc.ices.utexas.edu/software.html) in the Institute for Computational Engineering and Sciences at The University of Texas at Austin. 
