@@ -372,7 +372,7 @@ cores_fun$ram <- cores_fun$ram/1000000000
 BLIS_fun_elapsed <- sum(BLIS_16[BLIS_16$test_group=="matrix_fun","elapsed"])/3
 ```
 
-BLIS/libFLAME places $1st$ of 7 with a time of $`r round(BLIS_fun_elapsed,2)`$ seconds, beats the next submission by a factor of 5, and the last by a factor of 18.
+BLIS/libFLAME places $1st$ of 7 with a time of $`r round(BLIS_fun_elapsed,2)`$ seconds, beats the next submission by a factor of 5, and the last by a factor of 20.
 
 No Intel submissions with this many cores to benchmark against.
 
