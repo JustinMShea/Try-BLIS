@@ -5,7 +5,7 @@ saveRDS(BLISZEN, "data/BLISZEN.rds")
 rm(BLISZEN)
 gc()
 
-BLISZEN <- benchmark_std(runs = 6, cores = 1)
+BLISZEN_1 <- benchmark_std(runs = 6, cores = 1)
 saveRDS(BLISZEN_1, "data/BLISZEN_1.rds")
 rm(BLISZEN_1)
 gc()
