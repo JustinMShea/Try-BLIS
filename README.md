@@ -15,5 +15,3 @@ Benchmark results show a large performance increase when substituting `BLIS` for
 
 - Clone or download this repo and render the `slides/Try-BLIS.Rmd` file locally. 
 
-This was was part of [Session 3 on Statistical Methods](https://github.com/satRdays/chicago2019-slides#session-3-statistical-methods), and was unfortunately not recorded.  
-To see other talks from the event, check out the [Sat`R`day Chicago Github repo here](https://github.com/satRdays/chicago2019-slides). 
