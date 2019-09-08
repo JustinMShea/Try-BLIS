@@ -4,17 +4,17 @@ sudo update-alternatives --config liblapack.so-x86_64-linux-gnu
 sudo update-alternatives --config liblapack.so.3-x86_64-linux-gnu
 
 ## libFLAME (lapack)
-update-alternatives --install /usr/lib/x86_64-linux-gnu/liblapack.so.3 liblapack.so.3-x86_64-linux-gnu /home/impartial-spec/flame/lib/libflame-x86_64-5.1.0-58.so 55
+update-alternatives --install /usr/lib/x86_64-linux-gnu/liblapack.so.3 liblapack.so.3-x86_64-linux-gnu /home/usr/flame/lib/libflame-x86_64-5.1.0-58.so 55
 
 # Build on 9-4 from AMD
-update-alternatives --install /usr/lib/x86_64-linux-gnu/liblapack.so   liblapack.so-x86_64-linux-gnu   /home/impartial-spec/aocl-libflame-ubuntu-2.0/amd-libflame/lib/libflame.so 52
-update-alternatives --install /usr/lib/x86_64-linux-gnu/liblapack.so.3 liblapack.so.3-x86_64-linux-gnu /home/impartial-spec/aocl-libflame-ubuntu-2.0/amd-libflame/lib/libflame.so.2.0.0 52
+update-alternatives --install /usr/lib/x86_64-linux-gnu/liblapack.so   liblapack.so-x86_64-linux-gnu   /home/usr/aocl-libflame-ubuntu-2.0/amd-libflame/lib/libflame.so 52
+update-alternatives --install /usr/lib/x86_64-linux-gnu/liblapack.so.3 liblapack.so.3-x86_64-linux-gnu /home/usr/aocl-libflame-ubuntu-2.0/amd-libflame/lib/libflame.so.2.0.0 52
 
 # Build on 9-4 from Github
-update-alternatives --install /usr/lib/x86_64-linux-gnu/liblapack.so   liblapack.so-x86_64-linux-gnu   /home/impartial-spec/flame/lib/libflame.so 50
-update-alternatives --install /usr/lib/x86_64-linux-gnu/liblapack.so.3 liblapack.so.3-x86_64-linux-gnu /home/impartial-spec/flame/lib/libflame.so.1.0.0 50
+update-alternatives --install /usr/lib/x86_64-linux-gnu/liblapack.so   liblapack.so-x86_64-linux-gnu   /home/usr/flame/lib/libflame.so 50
+update-alternatives --install /usr/lib/x86_64-linux-gnu/liblapack.so.3 liblapack.so.3-x86_64-linux-gnu /home/usr/flame/lib/libflame.so.1.0.0 50
 ## Removing links that fail to build
-sudo update-alternatives --remove liblapack.so.3-x86_64-linux-gnu /home/impartial-spec/flame/lib/libflame.so.1.0.0
+sudo update-alternatives --remove liblapack.so.3-x86_64-linux-gnu /home/usr/flame/lib/libflame.so.1.0.0
 
 
 ## Select your BLAS
@@ -30,16 +30,16 @@ update-alternatives --install /usr/lib/x86_64-linux-gnu/libblas.so   libblas.so-
 update-alternatives --install /usr/lib/x86_64-linux-gnu/libblas.so.3 libblas.so.3-x86_64-linux-gnu  /usr/lib/x86_64-linux-gnu/blis/lib/zen/libblis.so.2 55
 
 ## BLIS/ZEN 5-6-2019 build
- update-alternatives --install /usr/lib/x86_64-linux-gnu/libblas.so   libblas.so-x86_64-linux-gnu /home/impartial-spec/blis/lib/zen/libblis.so.2 52
-update-alternatives --install /usr/lib/x86_64-linux-gnu/libblas.so.3 libblas.so.3-x86_64-linux-gnu  /home/impartial-spec/blis/lib/zen/libblis.so.2 52
+ update-alternatives --install /usr/lib/x86_64-linux-gnu/libblas.so   libblas.so-x86_64-linux-gnu /home/usr/blis/lib/zen/libblis.so.2 52
+update-alternatives --install /usr/lib/x86_64-linux-gnu/libblas.so.3 libblas.so.3-x86_64-linux-gnu  /home/usr/blis/lib/zen/libblis.so.2 52
 
 ## AMD/BLIS/ZEN 1.3
- update-alternatives --install /usr/lib/x86_64-linux-gnu/libblas.so   libblas.so-x86_64-linux-gnu /home/impartial-spec/amd/libs/1.3/amd-blis-1.3/lib/libblis.so 53
-update-alternatives --install /usr/lib/x86_64-linux-gnu/libblas.so.3 libblas.so.3-x86_64-linux-gnu  /home/impartial-spec/amd/libs/1.3/amd-blis-1.3/lib/libblis.so.1.3.0 53
+ update-alternatives --install /usr/lib/x86_64-linux-gnu/libblas.so   libblas.so-x86_64-linux-gnu /home/usr/amd/libs/1.3/amd-blis-1.3/lib/libblis.so 53
+update-alternatives --install /usr/lib/x86_64-linux-gnu/libblas.so.3 libblas.so.3-x86_64-linux-gnu  /home/usr/amd/libs/1.3/amd-blis-1.3/lib/libblis.so.1.3.0 53
 
 ## AMD/BLIS/ZEN 2.0 (build 9-4)
- update-alternatives --install /usr/lib/x86_64-linux-gnu/libblas.so   libblas.so-x86_64-linux-gnu /home/impartial-spec/aocl-blis-mt-ubuntu-2.0/amd-blis-mt/lib/libblis-mt.so 53
- update-alternatives --install /usr/lib/x86_64-linux-gnu/libblas.so.3   libblas.so.3-x86_64-linux-gnu /home/impartial-spec/aocl-blis-mt-ubuntu-2.0/amd-blis-mt/lib/libblis.so.2.0.0 53
+ update-alternatives --install /usr/lib/x86_64-linux-gnu/libblas.so   libblas.so-x86_64-linux-gnu /home/usr/aocl-blis-mt-ubuntu-2.0/amd-blis-mt/lib/libblis-mt.so 53
+ update-alternatives --install /usr/lib/x86_64-linux-gnu/libblas.so.3   libblas.so.3-x86_64-linux-gnu /home/usr/aocl-blis-mt-ubuntu-2.0/amd-blis-mt/lib/libblis.so.2.0.0 53
 
 
 
