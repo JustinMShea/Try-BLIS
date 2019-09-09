@@ -293,6 +293,30 @@ Primarily developed and maintained by individuals in the Science of High-Perform
  [ https://github.com/flame/libflame/](https://github.com/flame/libflame/)
  
  **The best part is: They really ROCK!**
+ 
+## Highlights of AMD BLIS 2.0
+
+- Improved BLIS performance on AMD Rome based architecture Level1 and Level2 BLAS performances improvements
+- Framework changes to better handle memory management
+- Improved DGEMM performance for AMD Rome based architectures
+- Improved TRSM performance for small problem sizes for AMD EPYC™ 7001 and 7002 series based architectures
+- BLIS build now supports both zen and zen2 configurations for AMD EPYC™ 7001 and 7002 series processors respectively
+
+The package containing BLIS Library binaries which includes optimizations for the AMD EPYC™ processor family, examples and documentation are available in the Downloads section below.
+
+Source code is available on GitHub https://github.com/amd/blis.
+ 
+
+## Highlights of AMD libFLAME 2.0
+
+- Fixed missing check() symbols in lapack2flame
+- Ported some BLIS build system bits to libFLAME 
+- Minor fixes in libFLAME build 
+- Few documentation updates
+
+The package containing libFLAME binaries, examples and documentation are available in the Downloads section below
+
+Source code is available on GitHub https://github.com/amd/libflame.
 
 ## BLIS/libFLAME 1 core: Programming
 
@@ -428,7 +452,7 @@ On 16 cores, **BLIS** is even faster yet by `r round(blas16_fun_elapsed - BLIS16
 
 - **Debian/Ubuntu Wiki:** Implementations alternative versions of BLAS and LAPACK [https://wiki.debian.org/DebianScience/LinearAlgebraLibraries](https://wiki.debian.org/DebianScience/LinearAlgebraLibraries)
 
-- **Brett Klamer:** Windows setup [http://brettklamer.com/diversions/statistical/faster-blas-in-r/](http://brettklamer.com/diversions/statistical/faster-blas-in-r/)
+- **AMD Developer Central: Pre-built binaries for Threadripper and Zen 1 & 2 microarchitecture**  [https://developer.amd.com/amd-aocl/blas-library/](https://developer.amd.com/amd-aocl/blas-library/)
 
 - **U Texas** Science of High-Performance Computing Group
 http://shpc.ices.utexas.edu/software.html
