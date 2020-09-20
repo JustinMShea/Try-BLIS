@@ -1,5 +1,7 @@
 library(benchmarkme)
 
+get_linear_algebra()
+
 AMD_BLIS_libFLAME <- benchmark_std()
 saveRDS(AMD_BLIS_libFLAME, "data/AMD_BLIS_libFLAME.rds")
 rm(AMD_BLIS_libFLAME)
