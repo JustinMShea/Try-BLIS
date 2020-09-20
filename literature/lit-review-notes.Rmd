@@ -1,0 +1,66 @@
+---
+title: "Lit-Review"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Linking R & BLAS/LAPACK
+
+R Installation and Administration manual: BLAS  https://cran.r-project.org/doc/manuals/r-release/R-admin.html#BLAS
+
+- **Dirk Eddelbuettel:** simple scripts to switch BLAS/LAPACK implementations [http://dirk.eddelbuettel.com/blog/2018/04/15/#018_mkl_for_debian_ubuntu](http://dirk.eddelbuettel.com/blog/2018/04/15/#018_mkl_for_debian_ubuntu)
+
+- Faster BLAS in R, Brett Klamer https://brettklamer.com/diversions/statistical/faster-blas-in-r/
+
+- Improving R Perfomance by installing optimized BLAS/LAPACK libraries, 2018, Carlos Santillan  
+  - https://csantill.github.io/RPerformanceWBLAS/ 
+  - https://github.com/csantill/RPerformanceWBLAS 
+
+- Compiling a Tuned BLAS for R. J. P. OlmstedLast, April 6, 2011 http://www.sas.rochester.edu/psc/thestarlab/help/moreclus/BLAS.pdf
+
+- Benchmarking Single- and Multi-Core BLAS Implementations and GPUs for use with R, Dirk Eddelbuettel 
+https://cloud.r-project.org/web/packages/gcbd/vignettes/gcbd.pdf
+
+- Tips and Tricks for Performance Computing with R, Bryan W Lewis
+https://docs.google.com/presentation/d/1mrrE8nLx1Morsy0CSejSWSavatS-PyxNJMWSxZ5M_MI/edit#slide=id.gf104e05a_010
+
+Has a subsection on linking R to BLAS on windows.
+
+- R on Linux, Brian Lewis. http://illposed.net/r-on-linux.html
+
+Has some notes on compiling R from source, and linking BLAS during that process.
+
+
+## Debian / Ubuntu specific BLAS/LAPACK
+
+- **Debian/Ubuntu Wiki:** Implementations alternative versions of BLAS and LAPACK [https://wiki.debian.org/DebianScience/LinearAlgebraLibraries](https://wiki.debian.org/DebianScience/LinearAlgebraLibraries)
+
+- **RFC: Naming convention for ILP64 variant of BLAS/LAPACK**:  https://lists.debian.org/debian-devel/2018/10/msg00339.html
+
+Discussion on new "64" suffix on libbals.so files. This RFC to define new BLAS iterations that index with 64 as oppose to 32. Relevant to which libblas.so file one links to. ie, libblas.so, libbals.so.3 or libblas64.so
+in `update-alternatives`.
+
+- **OpenBLAS FAQ on update-alternatives in Ubuntu 16.04 and 18.04 #2089** https://github.com/xianyi/OpenBLAS/issues/2089
+
+Some interesting general discussion.
+
+## BLIS / Libflame 
+
+
+- **U Texas** Science of High-Performance Computing Group
+http://shpc.ices.utexas.edu/software.html
+
+- **Publications Related to the FLAME Project**: http://www.cs.utexas.edu/~flame/web/FLAMEPublications.html
+
+ - **BLIS Github**: [https://github.com/flame/blis](https://github.com/flame/blis)
+
+- **libFLAME Github**: [https://github.com/flame/libflame/](https://github.com/flame/libflame/)
+
+
+- [AMD Releases Optimizing C/C++ Compiler For Ryzen](https://www.phoronix.com/scan.php?page=news_item&px=AMD-AOCC-1.0-Released)
+
+- **AMD Developer Central: Pre-built binaries for Threadripper and Zen 1 & 2 microarchitecture**  [https://developer.amd.com/amd-aocl/blas-library/](https://developer.amd.com/amd-aocl/blas-library/)
+
