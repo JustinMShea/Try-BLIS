@@ -48,9 +48,8 @@ in `update-alternatives`.
 Some interesting general discussion.
 
 - **Getting BLIS into Ubuntu** https://github.com/flame/blis/issues/210
-2019 post indicating BLIS is automatically synced into Ubuntu devel branch of Disco dingo 
 
-https://launchpad.net/ubuntu/+source/blis
+January 2019 post indicates BLIS is automatically synced into Ubuntu devel branch of Disco dingo https://launchpad.net/ubuntu/+source/blis
 
 ## BLIS / Libflame 
 
