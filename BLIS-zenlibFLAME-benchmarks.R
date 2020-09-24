@@ -11,7 +11,7 @@ rm(BLIS_zenlibFLAME)
 gc()
 
 
-BLIS_zenlibFLAME_1 <- benchmark_std(runs = 6, cores = 1)
+BLIS_zenlibFLAME_1 <- benchmark_std(cores = 1)
 attr(BLIS_zenlibFLAME_1, "BLAS") <- get_linear_algebra()
 attr(BLIS_zenlibFLAME_1, "SystemTime") <- Sys.time()
 saveRDS(BLIS_zenlibFLAME_1, "data/2950x/BLIS_zenlibFLAME_1.rds")
