@@ -11,10 +11,6 @@
 update-alternatives --config liblapack.so.3-x86_64-linux-gnu
 
 
-## Install Lapacks
- # See choices here: apt-cache search liblapack
-
-
 ## libFLAME (lapack)
 update-alternatives --install /usr/lib/x86_64-linux-gnu/liblapack.so.3 liblapack.so.3-x86_64-linux-gnu /home/impartial-spec/flame/lib/libflame-x86_64-5.1.0-58.so 10
 
@@ -43,9 +39,6 @@ update-alternatives --install /usr/lib/x86_64-linux-gnu/liblapack.so.3 liblapack
 ######################
 
 update-alternatives --config libblas.so.3-x86_64-linux-gnu
-
-## Install BLAS's
- # See choices here: apt-cache search libblas
 
 
 ## BLIS64 (apt install libblis64-3)
