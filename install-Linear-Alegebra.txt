@@ -1,7 +1,10 @@
 
+
+
 ## Install BLAS: See choices here: 
  apt-cache search libblas
  
 ## Install Lapacks: See choices here: 
  apt-cache search liblapack
 
+# https://tracker.debian.org/pkg/blis
