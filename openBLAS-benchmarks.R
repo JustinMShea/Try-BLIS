@@ -3,7 +3,7 @@ library(benchmarkme)
 get_linear_algebra()
 
 
-openBLAS_openmp_openmp <- benchmark_std()
+openBLAS_openmp <- benchmark_std()
 attr(openBLAS_openmp, "BLAS") <- get_linear_algebra()
 attr(openBLAS_openmp, "SystemTime") <- Sys.time()
 saveRDS(openBLAS_openmp, "data/2950x/openBLAS_openmp.rds")
